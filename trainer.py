@@ -10,7 +10,7 @@ backbone = "mobilenet_v2"
 if handle_gpu:
     io_utils.handle_gpu_compatibility()
 
-batch_size = 64
+batch_size = 32
 epochs = 150
 load_weights = False
 with_voc_2012 = True
