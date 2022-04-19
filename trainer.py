@@ -13,7 +13,7 @@ batch_size = 32
 epochs = 1
 load_weights = False
 with_voc_2012 = True
-backbone = "mobilenet_v2"
+backbone = args.backbone
 io_utils.is_valid_backbone(backbone)
 #
 if backbone == "mobilenet_v2":
