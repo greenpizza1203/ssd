@@ -87,7 +87,7 @@ def calculate_mAP(stats):
 
 def evaluate_predictions(dataset, pred_bboxes, pred_labels, pred_scores, labels, batch_size):
     stats = init_stats(labels)
-    for batch_id, image_data in tqdm(enumerate(dataset)):
+    for batch_id, image_data in enumerate(tqdm(dataset)):
         imgs, gt_boxes, gt_labels = image_data
         start = batch_id * batch_size
         end = start + batch_size
