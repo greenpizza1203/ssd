@@ -7,6 +7,7 @@ from utils import bbox_utils, data_utils, io_utils, train_utils
 
 handle_gpu = False
 
+
 if handle_gpu:
     io_utils.handle_gpu_compatibility()
 
