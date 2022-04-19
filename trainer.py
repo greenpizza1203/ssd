@@ -46,8 +46,7 @@ val_data = val_data.map(lambda x : data_utils.preprocessing(x, img_size, img_siz
 
 data_shapes = data_utils.get_data_shapes()
 padding_values = data_utils.get_padding_values()
-train_data = train_data.shuffle(batch_size*4).padded_batch(batch_size, padded_shapes=data_shapes,
-                                                             padding_values=padding_values)
+train_data = train_data.shuffle(batch_size*4).padded_batch(batch_size, padded_shapes=data_shapes, padding_values=padding_values)
 val_data = val_data.padded_batch(batch_size, padded_shapes=data_shapes, padding_values=padding_values)
 #
 ssd_model = get_model(hyper_params)
