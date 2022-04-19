@@ -5,8 +5,7 @@ import augmentation
 from ssd_loss import CustomLoss
 from utils import bbox_utils, data_utils, io_utils, train_utils
 
-handle_gpu = False
-backbone = "mobilenet_v2"
+handle_gpu=False
 if handle_gpu:
     io_utils.handle_gpu_compatibility()
 
@@ -14,7 +13,7 @@ batch_size = 32
 epochs = 150
 load_weights = False
 with_voc_2012 = True
-backbone = backbone
+backbone = "mobilenet_v2"
 io_utils.is_valid_backbone(backbone)
 #
 if backbone == "mobilenet_v2":
