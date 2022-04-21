@@ -66,7 +66,7 @@ def get_labels(info):
     outputs:
         labels = [labels list]
     """
-    return info.features["labels"].names
+    return info.features['objects']["label"].names
 
 def get_custom_imgs(custom_image_path):
     """Generating a list of images for given path.
