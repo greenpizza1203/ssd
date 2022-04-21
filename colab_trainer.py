@@ -14,15 +14,17 @@ class ColabModel:
         self.backbone = "mobilenet_v2"
         self.learning_rate = learning_rate
 
-    def load_data(self, train_data, val_data, labels):
+    def load_data(self, train_data, val_data, info):
+        labels = info['labels']
+        train_size = info['train_size']
+        val_size = info['validation_size']
         if self.backbone == "mobilenet_v2":
             from models.ssd_mobilenet_v2 import get_model, init_model
         else:
             from models.ssd_vgg16 import get_model, init_model
         hyper_params = train_utils.get_hyper_params(self.backbone)
 
-        train_total_items = train_data.reduce(0, lambda x, _: x + 1)
-        val_total_items = val_data.reduce(0, lambda x, _: x + 1)
+
         # train_data = data_utils.get_dataset("voc/2007", "train+validation")
         # val_data, _ = data_utils.get_dataset("voc/2007", "test")
         # train_total_items = data_utils.get_total_item_size(info, "train+validation")
@@ -32,8 +34,8 @@ class ColabModel:
         labels = ["bg"] + labels
         hyper_params["total_labels"] = len(labels)
         img_size = hyper_params["img_size"]
-        train_data = train_data.map(lambda x: data_utils.preprocessing(x, img_size, img_size, augmentation.apply))
-        val_data = val_data.map(lambda x: data_utils.preprocessing(x, img_size, img_size))
+        # train_data = train_data.map(lambda x: data_utils.preprocessing(x, img_size, img_size, augmentation.apply))
+        # val_data = val_data.map(lambda x: data_utils.preprocessing(x, img_size, img_size))
         data_shapes = data_utils.get_data_shapes()
         padding_values = data_utils.get_padding_values()
         train_data = train_data.shuffle(self.batch_size * 4).padded_batch(self.batch_size, padded_shapes=data_shapes,
