@@ -16,11 +16,12 @@ class ColabModel:
 
     def load_data(self, train_data, val_data, info):
         labels = info['labels']
-        train_size = info['train_size']
-        val_size = info['validation_size']
+        train_total_items = info['train_size']
+        val_total_items = info['validation_size']
         if self.backbone == "mobilenet_v2":
             from models.ssd_mobilenet_v2 import get_model, init_model
         else:
+            assert False
             from models.ssd_vgg16 import get_model, init_model
         hyper_params = train_utils.get_hyper_params(self.backbone)
 
@@ -34,13 +35,15 @@ class ColabModel:
         labels = ["bg"] + labels
         hyper_params["total_labels"] = len(labels)
         img_size = hyper_params["img_size"]
-        # train_data = train_data.map(lambda x: data_utils.preprocessing(x, img_size, img_size, augmentation.apply))
-        # val_data = val_data.map(lambda x: data_utils.preprocessing(x, img_size, img_size))
+        train_data = train_data.map(lambda x: data_utils.preprocessing(x, img_size, img_size, augmentation.apply))
+        val_data = val_data.map(lambda x: data_utils.preprocessing(x, img_size, img_size))
+        print("preprocess done")
         data_shapes = data_utils.get_data_shapes()
         padding_values = data_utils.get_padding_values()
         train_data = train_data.shuffle(self.batch_size * 4).padded_batch(self.batch_size, padded_shapes=data_shapes,
                                                                           padding_values=padding_values)
         val_data = val_data.padded_batch(self.batch_size, padded_shapes=data_shapes, padding_values=padding_values)
+        print("padding done")
 
         ssd_model = get_model(hyper_params)
         ssd_custom_losses = CustomLoss(hyper_params["neg_pos_ratio"], hyper_params["loc_loss_alpha"])
