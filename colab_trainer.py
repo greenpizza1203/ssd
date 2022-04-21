@@ -14,19 +14,21 @@ class ColabModel:
         self.backbone = "mobilenet_v2"
         self.learning_rate = learning_rate
 
-    def load_data(self, train_data, val_data):
+    def load_data(self, train_data, val_data, labels):
         if self.backbone == "mobilenet_v2":
             from models.ssd_mobilenet_v2 import get_model, init_model
         else:
             from models.ssd_vgg16 import get_model, init_model
         hyper_params = train_utils.get_hyper_params(self.backbone)
 
-        train_data, info = data_utils.get_dataset("voc/2007", "train+validation")
-        val_data, _ = data_utils.get_dataset("voc/2007", "test")
-        train_total_items = data_utils.get_total_item_size(info, "train+validation")
-        val_total_items = data_utils.get_total_item_size(info, "test")
+        train_total_items = train_data.reduce(0, lambda x, _: x + 1)
+        val_total_items = val_data.reduce(0, lambda x, _: x + 1)
+        # train_data = data_utils.get_dataset("voc/2007", "train+validation")
+        # val_data, _ = data_utils.get_dataset("voc/2007", "test")
+        # train_total_items = data_utils.get_total_item_size(info, "train+validation")
+        # val_total_items = data_utils.get_total_item_size(info, "test")
 
-        labels = data_utils.get_labels(info)
+        # labels = data_utils.get_labels(info)
         labels = ["bg"] + labels
         hyper_params["total_labels"] = len(labels)
         img_size = hyper_params["img_size"]
