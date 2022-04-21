@@ -12,7 +12,7 @@ def get_log_path(model_type, custom_postfix=""):
     outputs:
         log_path = tensorboard log path, for example: "logs/mobilenet_v2/{date}"
     """
-    return "logs/{}{}/{}".format(model_type, custom_postfix, datetime.now().strftime("%Y%m%d-%H%M%S"))
+    return "logs\\{}\\{}\\{}".format(model_type, custom_postfix, datetime.now().strftime("%Y%m%d-%H%M%S"))
 
 def get_model_path(model_type):
     """Generating model path from model_type value for save/load model weights.
@@ -40,7 +40,7 @@ def handle_args():
                         default="mobilenet_v2",
                         metavar="['mobilenet_v2', 'vgg16']",
                         help="Which backbone used for the ssd")
-    args = parser.parse_args([])
+    args = parser.parse_args()
     return args
 
 def is_valid_backbone(backbone):
