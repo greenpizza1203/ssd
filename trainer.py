@@ -1,9 +1,6 @@
-import os
-
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-
 from tensorflow.keras.callbacks import ModelCheckpoint, TensorBoard, LearningRateScheduler
-from tensorflow.keras.optimizers import SGD, Adam
+from tensorflow.keras.optimizers import Adam
+
 import augmentation
 from ssd_loss import CustomLoss
 from utils import bbox_utils, data_utils, io_utils, train_utils
