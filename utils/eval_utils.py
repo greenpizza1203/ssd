@@ -1,6 +1,5 @@
 import tensorflow as tf
 import numpy as np
-from tqdm import tqdm
 from utils import bbox_utils
 
 def init_stats(labels):
