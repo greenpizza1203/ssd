@@ -1,8 +1,9 @@
+import logging
 import warnings
 
 from tensorflow.keras.callbacks import ModelCheckpoint, TensorBoard, LearningRateScheduler
 from tensorflow.keras.optimizers import Adam
-
+import tensorflow as tf
 import augmentation
 from ssd_loss import CustomLoss
 from utils import bbox_utils, data_utils, io_utils, train_utils
@@ -42,14 +43,14 @@ class ColabModel:
         train_data = train_data.shuffle(self.batch_size * 4).padded_batch(self.batch_size, padded_shapes=data_shapes,
                                                                           padding_values=padding_values)
         val_data = val_data.padded_batch(self.batch_size, padded_shapes=data_shapes, padding_values=padding_values)
+        tf.get_logger().setLevel(logging.ERROR)
 
         ssd_model = get_model(hyper_params)
+        tf.get_logger().setLevel(logging.DEBUG)
         ssd_custom_losses = CustomLoss(hyper_params["neg_pos_ratio"], hyper_params["loc_loss_alpha"])
         ssd_model.compile(optimizer=Adam(learning_rate=self.learning_rate),
                           loss=[ssd_custom_losses.loc_loss_fn, ssd_custom_losses.conf_loss_fn])
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            init_model(ssd_model)
+
         #
         ssd_model_path = io_utils.get_model_path(self.backbone)
         # if load_weights:
