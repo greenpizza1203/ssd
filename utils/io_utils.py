@@ -12,7 +12,7 @@ def get_log_path(model_type, custom_postfix=""):
     outputs:
         log_path = tensorboard log path, for example: "logs/mobilenet_v2/{date}"
     """
-    return "logs/{}/{}/{}".format(model_type, custom_postfix, datetime.now().strftime("%Y%m%d-%H%M%S"))
+    return "logs/{}{}/{}".format(model_type, custom_postfix, datetime.now().strftime("%Y%m%d-%H%M%S"))
 
 def get_model_path(model_type):
     """Generating model path from model_type value for save/load model weights.
