@@ -24,7 +24,6 @@ class ColabModel:
             from models.ssd_vgg16 import get_model, init_model
         hyper_params = train_utils.get_hyper_params(self.backbone)
 
-
         # train_data = data_utils.get_dataset("voc/2007", "train+validation")
         # val_data, _ = data_utils.get_dataset("voc/2007", "test")
         # train_total_items = data_utils.get_total_item_size(info, "train+validation")
