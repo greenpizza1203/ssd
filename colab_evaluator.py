@@ -10,8 +10,7 @@ class ColabEvaluator:
         self.batch_size = batch_size
         self.backbone = "mobilenet_v2"
 
-    def evaluate(self, test_data, info):
-        labels = info['labels']
+    def evaluate(self, test_data, total_items, labels):
         backbone = self.backbone
         batch_size = self.batch_size
         io_utils.is_valid_backbone(backbone)
