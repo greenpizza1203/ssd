@@ -1,3 +1,5 @@
+import warnings
+
 from tensorflow.keras.callbacks import ModelCheckpoint, TensorBoard, LearningRateScheduler
 from tensorflow.keras.optimizers import Adam
 
@@ -45,7 +47,9 @@ class ColabModel:
         ssd_custom_losses = CustomLoss(hyper_params["neg_pos_ratio"], hyper_params["loc_loss_alpha"])
         ssd_model.compile(optimizer=Adam(learning_rate=self.learning_rate),
                           loss=[ssd_custom_losses.loc_loss_fn, ssd_custom_losses.conf_loss_fn])
-        init_model(ssd_model)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            init_model(ssd_model)
         #
         ssd_model_path = io_utils.get_model_path(self.backbone)
         # if load_weights:
