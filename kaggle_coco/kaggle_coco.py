@@ -176,17 +176,15 @@ class KaggleCoco(tfds.core.GeneratorBasedBuilder):
         return splits
 
     def _generate_examples(self, image_dir, annotation_dir, split_name,
-                           annotation_type, panoptic_dir):
+                           annotation_type):
         """Generate examples as dicts.
 
         Args:
           image_dir: `str`, directory containing the images
           annotation_dir: `str`, directory containing annotations
           split_name: `str`, <split_name><year> (ex: train2014, val2017)
-          annotation_type: `AnnotationType`, the annotation format (NONE, BBOXES,
-            PANOPTIC)
-          panoptic_dir: If annotation_type is PANOPTIC, contains the panoptic image
-            directory
+          annotation_type: `AnnotationType`, the annotation format (NONE, BBOXES)
+
 
         Yields:
           example key and data
