@@ -107,13 +107,7 @@ class KaggleCoco(tfds.core.GeneratorBasedBuilder):
                     images='val2017',
                     annotations='annotations_trainval2017',
                     annotation_type=AnnotationType.BBOXES,
-                ),
-                Split(
-                    name=tfds.Split.TEST,
-                    images='test2017',
-                    annotations='image_info_test2017',
-                    annotation_type=AnnotationType.NONE,
-                ),
+                )
             ],
         )
     ]
@@ -161,7 +155,7 @@ class KaggleCoco(tfds.core.GeneratorBasedBuilder):
         splits = []
         for split in self.builder_config.splits:
             image_dir = f'{dir_name}/{split.name}'
-            annotations_dir = f'{dir_name}/annotations'
+            annotations_dir = f'{dir_name}'
 
             splits.append(
                 tfds.core.SplitGenerator(
