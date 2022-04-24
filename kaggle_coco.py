@@ -150,7 +150,7 @@ class KaggleCoco(tfds.core.GeneratorBasedBuilder):
         )
 
     def _split_generators(self, dl_manager):
-        dir_name = '/kaggle/input/coco-2017-data/coco2017'
+        dir_name = '/kaggle/input/coco-2017-dataset/coco2017'
 
         splits = []
         for split in self.builder_config.splits:
