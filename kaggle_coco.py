@@ -154,8 +154,8 @@ class KaggleCoco(tfds.core.GeneratorBasedBuilder):
 
         splits = []
         for split in self.builder_config.splits:
-            image_dir = f'{dir_name}/{split.name}'
-            annotations_dir = f'{dir_name}'
+            image_dir = dir_name
+            annotations_dir = dir_name
 
             splits.append(
                 tfds.core.SplitGenerator(
