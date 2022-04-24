@@ -226,7 +226,7 @@ class KaggleCoco(tfds.core.GeneratorBasedBuilder):
 
         # Iterate over all images
         annotation_skipped = 0
-        for image_info in sorted(images, key=lambda x: x['id']):
+        for image_info in sorted(images, key=lambda x: x['id'])[0:2]:
             # Each instance annotation is a dict:
             # {
             #     'iscrowd': 0,
