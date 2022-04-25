@@ -9,7 +9,7 @@ from ssd_loss import CustomLoss
 from utils import bbox_utils, data_utils, io_utils, train_utils
 
 
-class ColabModel:
+class KaggleModel:
     def __init__(self, batch_size=32, epochs=150, learning_rate=1e-3):
         self.fit_lambda = None
         self.batch_size = batch_size
