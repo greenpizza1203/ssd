@@ -7,6 +7,9 @@ setup(
     description='My first Python library',
     author='Me',
     license='MIT',
-    packages=['colab']
+    packages=['colab'],
+    package_dir={
+        'colab': '.',
+    }
 
 )
