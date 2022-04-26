@@ -10,7 +10,7 @@ if args.handle_gpu:
     io_utils.handle_gpu_compatibility()
 
 batch_size = 32
-epochs = 150
+epochs = 1
 load_weights = False
 with_voc_2012 = True
 backbone = args.backbone
