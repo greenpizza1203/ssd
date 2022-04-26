@@ -40,7 +40,7 @@ def handle_args():
                         default="mobilenet_v2",
                         metavar="['mobilenet_v2', 'vgg16']",
                         help="Which backbone used for the ssd")
-    args = parser.parse_args()
+    args = parser.parse_args([])
     return args
 
 def is_valid_backbone(backbone):
