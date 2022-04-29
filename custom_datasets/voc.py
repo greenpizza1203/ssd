@@ -1,6 +1,5 @@
 from .lib import Split, Model, resize_image, load_dataset
 
-image_size = (300, 300)
 
 train_data, train_size, labels = load_dataset("voc/2007", "train+validation")
 train_2012, train_2012_size, _ = load_dataset("voc/2012", "train+validation")

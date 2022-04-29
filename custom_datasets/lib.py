@@ -1,6 +1,7 @@
 import tensorflow as tf
 import tensorflow_datasets as tfds
 
+image_size = (300, 300)
 
 def resize_image(element):
     image = tf.image.convert_image_dtype(element['image'], tf.float32)
