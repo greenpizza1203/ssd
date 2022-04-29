@@ -2,6 +2,18 @@ from .lib import Split, resize_image, load_dataset
 
 train = val = labels = None
 
+image_size = (300, 300)
+
+
+def filter_features(element):
+    return {
+        'image': resize_image(element['image'], image_size),
+        'objects': {
+            'bbox': element['objects']['bbox'],
+            'label': element['objects']['label']
+        }
+    }
+
 
 def load_datasets():
     global train, val, labels
@@ -16,4 +28,3 @@ def load_datasets():
     train = Split(train_data, train_size)
     val = Split(val_data, val_size)
     labels = labels
-

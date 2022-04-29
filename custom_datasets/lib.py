@@ -2,15 +2,13 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 from tqdm.auto import tqdm
 
-image_size = (300, 300)
 
 
-def resize_image(element):
-    image = tf.image.convert_image_dtype(element['image'], tf.float32)
+def resize_image(image, image_size):
+    image = tf.image.convert_image_dtype(image, tf.float32)
     resized_image = tf.image.resize(image, image_size)
     fixed_image = tf.image.convert_image_dtype(resized_image, tf.uint8)
-    element['image'] = fixed_image
-    return element
+    return fixed_image
 
 
 def load_dataset(name, split):
