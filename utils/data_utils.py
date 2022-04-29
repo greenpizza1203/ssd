@@ -29,7 +29,7 @@ def preprocessing(image_data, final_height, final_width, augmentation_fn=None, e
         img, gt_boxes = augmentation_fn(img, gt_boxes)
     return img, gt_boxes, gt_labels
 
-def get_dataset(name, split, data_dir="~/tensorflow_datasets"):
+def get_dataset(name, split):
     """Get tensorflow dataset split and info.
     inputs:
         name = name of the dataset, voc/2007, voc/2012, etc.
@@ -40,8 +40,7 @@ def get_dataset(name, split, data_dir="~/tensorflow_datasets"):
         dataset = tensorflow dataset split
         info = tensorflow dataset info
     """
-    assert split in ["train", "train+validation", "validation", "test"]
-    dataset, info = tfds.load(name, split=split, data_dir=data_dir, with_info=True)
+    dataset, info = tfds.load(name, split=split, with_info=True)
     return dataset, info
 
 def get_total_item_size(info, split):
