@@ -1,5 +1,8 @@
+import os
+
 import tensorflow as tf
 import tensorflow_datasets as tfds
+from tqdm.auto import tqdm
 
 image_size = (300, 300)
 
@@ -36,3 +39,11 @@ class Split:
     def __init__(self, data, size):
         self.data = data
         self.size = size
+
+    def cache(self, path):
+        os.makedirs(path)
+        computed_size = 0
+        self.data = self.data.cache(path)
+        for _ in tqdm(self.data, total=self.size):
+            computed_size += 1
+        assert computed_size == self.size
