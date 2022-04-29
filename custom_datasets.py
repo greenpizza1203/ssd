@@ -17,8 +17,8 @@ voc_2012_data, voc_2012_info = tfds.load("voc/2012", split="train+validation", w
 
 voc_2012_total_items = voc_2012_info.splits["train"].num_examples + voc_2012_info.splits["validation"].num_examples
 
-train_data = train_data.concatenate(voc_2012_data).map(resize_image).expanduser('~/train')
+train_data = train_data.concatenate(voc_2012_data).map(resize_image)
 
-val_data = tfds.load("voc/2007", split="test").expanduser('~/validate')
+val_data = tfds.load("voc/2007", split="test").map(resize_image)
 
 labels = info.features["labels"].names
