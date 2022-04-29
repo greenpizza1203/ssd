@@ -30,9 +30,10 @@ class Voc:
 
         train_data = train_data.concatenate(train_2012).map(resize_image)
 
-        val_data, _, _ = load_dataset("voc/2007", "test")
+        val_data, val_size, _ = load_dataset("voc/2007", "test")
 
         val_data = val_data.map(resize_image)
         self.train_data = train_data
         self.train_size = train_size + train_2012_size
         self.val_data = val_data
+        self.val_size = val_size
