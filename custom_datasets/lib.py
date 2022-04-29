@@ -13,7 +13,7 @@ def resize_image(element):
 
 
 def load_dataset(name, split):
-    data, info = tfds.load(name, split=split, with_info=True, download=False)
+    data, info = tfds.load(name, split=split, with_info=True)
 
     labels = info.features["labels"].names
 
