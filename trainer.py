@@ -22,10 +22,8 @@ class Trainer:
         hyper_params["total_labels"] = len(labels)
         img_size = hyper_params["img_size"]
 
-        train_data = train_data.map(
-            lambda x: data_utils.preprocessing(x, img_size, img_size, augmentation.apply)).cache(expanduser('~/train'))
-        val_data = val_data.map(lambda x: data_utils.preprocessing(x, img_size, img_size)).cache(
-            expanduser('~/validate'))
+        train_data = train_data.map(lambda x: data_utils.preprocessing(x, img_size, img_size, augmentation.apply))
+        val_data = val_data.map(lambda x: data_utils.preprocessing(x, img_size, img_size))
 
         train_total_items = train_data.reduce(0, lambda x, _: x + 1)
         val_total_items = val_data.reduce(0, lambda x, _: x + 1)
