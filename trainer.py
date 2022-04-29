@@ -15,7 +15,8 @@ class Trainer:
         self.batch_size = batch_size
         self.fitter = None
 
-    def load_data(self, train_data, val_data, labels):
+    def load_data(self, dataset):
+        train_data, val_data, labels = dataset.train_data, dataset.val_data, dataset.labels
         labels = ["bg"] + labels
         hyper_params = train_utils.get_hyper_params()
 

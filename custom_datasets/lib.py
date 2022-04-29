@@ -27,14 +27,6 @@ def load_dataset(name, split):
     return data, total, labels
 
 
-class Model:
-    def __init__(self, train=None, val=None, test=None, labels=None):
-        self.train = train
-        self.val = val
-        self.test = test
-        self.labels = labels
-
-
 class Split:
     def __init__(self, data, size):
         self.data = data
