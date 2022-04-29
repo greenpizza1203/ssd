@@ -37,3 +37,4 @@ class Voc:
         self.train_size = train_size + train_2012_size
         self.val_data = val_data
         self.val_size = val_size
+        self.labels = labels
