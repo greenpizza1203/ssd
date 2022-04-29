@@ -1,5 +1,3 @@
-from os.path import expanduser
-
 from tensorflow.keras.callbacks import ModelCheckpoint, TensorBoard, LearningRateScheduler
 from tensorflow.keras.optimizers import Adam
 
@@ -47,22 +45,23 @@ class Trainer:
         ssd_train_feed = train_utils.generator(train_data, prior_boxes, hyper_params)
         ssd_val_feed = train_utils.generator(val_data, prior_boxes, hyper_params)
 
-        checkpoint_callback = ModelCheckpoint(ssd_model_path, monitor="val_loss", save_best_only=True,
-                                              save_weights_only=True)
         tensorboard_callback = TensorBoard()
         learning_rate_callback = LearningRateScheduler(train_utils.scheduler, verbose=0)
 
         step_size_train = train_utils.get_step_size(train_total_items, self.batch_size)
         step_size_val = train_utils.get_step_size(val_total_items, self.batch_size)
-        self.fitter = lambda: ssd_model.fit(ssd_train_feed,
-                                            steps_per_epoch=step_size_train,
-                                            validation_data=ssd_val_feed,
-                                            validation_steps=step_size_val,
-                                            epochs=self.epochs,
-                                            callbacks=[checkpoint_callback, tensorboard_callback,
-                                                       learning_rate_callback])
+        self.fitter = lambda output_path: ssd_model.fit(ssd_train_feed,
+                                                        steps_per_epoch=step_size_train,
+                                                        validation_data=ssd_val_feed,
+                                                        validation_steps=step_size_val,
+                                                        epochs=self.epochs,
+                                                        callbacks=[ModelCheckpoint(output_path, monitor="val_loss",
+                                                                                   save_best_only=True,
+                                                                                   save_weights_only=True),
+                                                                   tensorboard_callback,
+                                                                   learning_rate_callback])
 
-    def fit(self):
-        self.fitter()
+    def fit(self, output_path):
+        self.fitter(output_path)
 
 #
