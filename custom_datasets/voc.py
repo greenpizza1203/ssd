@@ -10,6 +10,6 @@ def load_datasets():
     train_data = train_data.concatenate(train_2012).map(resize_image)
     val_data, val_size, _ = load_dataset("voc/2007", "test")
     val_data = val_data.map(resize_image)
-    train = Split(train_data, train_size),
-    val = Split(val_data, val_size),
+    train = Split(train_data, train_size)
+    val = Split(val_data, val_size)
     labels = labels
