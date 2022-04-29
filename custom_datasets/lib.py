@@ -3,6 +3,7 @@ import tensorflow_datasets as tfds
 
 image_size = (300, 300)
 
+
 def resize_image(element):
     image = tf.image.convert_image_dtype(element['image'], tf.float32)
     resized_image = tf.image.resize(image, image_size)
@@ -12,7 +13,7 @@ def resize_image(element):
 
 
 def load_dataset(name, split):
-    data, info = tfds.load(name, split=split, with_info=True)
+    data, info = tfds.load(name, split=split, with_info=True, download=False)
 
     labels = info.features["labels"].names
 
@@ -24,7 +25,7 @@ def load_dataset(name, split):
 
 
 class Model:
-    def __init__(self, train=None, val=None, test=None, labels = None):
+    def __init__(self, train=None, val=None, test=None, labels=None):
         self.train = train
         self.val = val
         self.test = test
