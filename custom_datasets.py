@@ -20,7 +20,8 @@ def resize_image(element):
     image = tf.image.convert_image_dtype(element['image'], tf.float32)
     resized_image = tf.image.resize(image, image_size)
     fixed_image = tf.image.convert_image_dtype(resized_image, tf.uint8)
-    return fixed_image
+    element['image'] = fixed_image
+    return element
 
 
 class Voc:
