@@ -33,7 +33,6 @@ class Split:
         self.size = size
 
     def cache(self, path):
-        os.makedirs(path)
         computed_size = 0
         self.data = self.data.cache(path)
         for _ in tqdm(self.data, total=self.size):
