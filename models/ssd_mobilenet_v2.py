@@ -1,5 +1,5 @@
 import tensorflow as tf
-from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2
+from .custom_mobilenet_v2 import MobileNetV2
 from tensorflow.keras.layers import Conv2D
 from tensorflow.keras.models import Model
 from .header import get_head_from_outputs
