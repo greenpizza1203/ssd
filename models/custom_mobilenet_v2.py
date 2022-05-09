@@ -355,7 +355,7 @@ def MobileNetV2(input_shape=None,
   x = _inverted_res_block(
       x, filters=80, alpha=alpha, stride=1, expansion=6, block_id=16)
 
-  ##CUSTOM: Divided all filters amount by 4, now sits at ~30,000 parameters
+  ##CUSTOM: Divided all filters amount by 4, now sits at ~145,000 parameters
   
   
   # no alpha applied to last conv as stated in the paper:
