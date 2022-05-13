@@ -329,8 +329,8 @@ def MobileNetV2(input_shape=None,
   x = _inverted_res_block(
       x, filters=32, alpha=alpha, stride=1, expansion=6, block_id=5)
 
-  x = _inverted_res_block(
-      x, filters=64, alpha=alpha, stride=2, expansion=6, block_id=6)
+  #x = _inverted_res_block(
+      #x, filters=64, alpha=alpha, stride=2, expansion=6, block_id=6)
   x = _inverted_res_block(
       x, filters=64, alpha=alpha, stride=1, expansion=6, block_id=7)
   x = _inverted_res_block(
