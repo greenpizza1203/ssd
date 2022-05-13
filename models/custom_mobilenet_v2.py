@@ -314,8 +314,8 @@ def MobileNetV2(input_shape=None,
           x)
   x = layers.ReLU(6., name='Conv1_relu')(x)
 
-  x = _inverted_res_block(
-      x, filters=16, alpha=alpha, stride=1, expansion=1, block_id=0)
+  #x = _inverted_res_block(
+      #x, filters=16, alpha=alpha, stride=1, expansion=1, block_id=0)
 
   x = _inverted_res_block(
       x, filters=24, alpha=alpha, stride=2, expansion=6, block_id=1)
@@ -329,8 +329,8 @@ def MobileNetV2(input_shape=None,
   x = _inverted_res_block(
       x, filters=32, alpha=alpha, stride=1, expansion=6, block_id=5)
 
-  #x = _inverted_res_block(
-      #x, filters=64, alpha=alpha, stride=2, expansion=6, block_id=6)
+  x = _inverted_res_block(
+      x, filters=64, alpha=alpha, stride=2, expansion=6, block_id=6)
   x = _inverted_res_block(
       x, filters=64, alpha=alpha, stride=1, expansion=6, block_id=7)
   x = _inverted_res_block(
