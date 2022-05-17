@@ -8,7 +8,6 @@ from custom_datasets import Voc
 
 labels = ["person", "car"]
 voc = Voc(labels)
-
 voc.load_data()
 
 print(voc.train.size)

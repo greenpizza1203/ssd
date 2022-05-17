@@ -60,8 +60,6 @@ class Voc:
             # tf.print(tf.gather_nd(orig_labels, indices))
             return {
                 'objects': {
-                    'bbox_old': orig_bboxes,
-                    'label_old': orig_labels,
                     'bbox': tf.gather_nd(orig_bboxes, indices),
                     'label': tf.gather_nd(orig_labels, indices)
                 }
